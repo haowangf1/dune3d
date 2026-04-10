@@ -109,7 +109,20 @@ void Editor::on_add_group(Group::Type group_type, WorkspaceBrowserAddGroupMode a
         group.m_dvec = doc.get_entity<EntityWorkplane>(group.m_wrkpl).get_normal_vector();
         group.m_source_group = current_group.m_uuid;
     }
-    else if (any_of(group_type, Group::Type::LATHE, Group::Type::REVOLVE)) {
+    else if (group_type == Group::Type::REVOLVE)
+    {
+        if (!current_group.m_active_wrkpl) {
+        }
+
+        auto &group = doc.insert_group<GroupRevolve>(UUID::random(), current_group.m_uuid);
+        new_group = &group;
+        group.m_wrkpl = current_group.m_active_wrkpl;
+        group.m_source_group = current_group.m_uuid;
+
+        group.m_origin = {group.m_wrkpl, 1};
+        group.m_normal = group.m_wrkpl;
+    }
+    else if (group_type == Group::Type::LATHE) {
         if (!current_group.m_active_wrkpl) {
             m_workspace_browser->show_toast(toast_prefix + "Current group needs an active workplane");
             return;
@@ -261,7 +274,10 @@ void Editor::finish_add_group(Group *new_group)
     }
     else if (group_type == Group::Type::PIPE) {
         trigger_action(ToolID::SELECT_SPINE_ENTITIES);
-    }
+
+    }else if (group_type == Group::Type::REVOLVE) {
+        trigger_action(ToolID::SELECT_REVOLVE_AXIS);
+    } 
 }
 
 void Editor::on_delete_current_group()

@@ -1,5 +1,6 @@
 #include "tool_select_revolve_axis.hpp"
 #include "document/document.hpp"
+#include "document/entity/entity.hpp"
 #include "document/group/group_revolve.hpp"
 #include "editor/editor_interface.hpp"
 #include "tool_common_impl.hpp"

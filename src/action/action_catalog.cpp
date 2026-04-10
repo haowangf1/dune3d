@@ -301,6 +301,7 @@ const std::map<ActionToolID, ActionCatalogItem> action_catalog = {
           ActionCatalogItem::FLAGS_DEFAULT}},
         {ActionID::GO_TO_GROUP, {"Go to group", ActionGroup::UNKNOWN, ActionCatalogItem::FLAGS_SPECIFIC}},
         {ActionID::GO_TO_SOURCE_GROUP, {"Go to source group", ActionGroup::UNKNOWN, ActionCatalogItem::FLAGS_DEFAULT}},
+        {ToolID::SELECT_REVOLVE_AXIS,{"Select revolve axis", ActionGroup::UNKNOWN, ActionCatalogItem::FLAGS_HIDDEN}},
 };
 
 
@@ -433,6 +434,7 @@ const LutEnumStr<ToolID> tool_lut = {
         TOOL_LUT_ITEM(CONSTRAIN_PARALLEL),
         TOOL_LUT_ITEM(CONSTRAIN_PARALLEL_3D),
         TOOL_LUT_ITEM(CONSTRAIN_WORKPLANE_NORMAL),
+        TOOL_LUT_ITEM(SELECT_REVOLVE_AXIS),
         TOOL_LUT_ITEM(CONSTRAIN_MIDPOINT),
         TOOL_LUT_ITEM(CONSTRAIN_MIDPOINT_3D),
         TOOL_LUT_ITEM(CONSTRAIN_EQUAL_LENGTH),
